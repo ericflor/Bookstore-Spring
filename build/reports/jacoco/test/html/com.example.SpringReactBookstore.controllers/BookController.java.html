@@ -8,13 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping(&quot;/books&quot;)
-<span class="fc" id="L17">public class BookController {</span>
+<span class="fc" id="L15">public class BookController {</span>
 
     @Autowired
     private BookService bookService;
@@ -22,9 +20,9 @@ import java.util.List;
     @GetMapping
     public ResponseEntity&lt;List&lt;BookDTO&gt;&gt; getAllBooks(){
 
-<span class="fc" id="L25">        List&lt;BookDTO&gt; books = bookService.getBooks();</span>
+<span class="fc" id="L23">        List&lt;BookDTO&gt; books = bookService.getBooks();</span>
 
-<span class="fc" id="L27">        return ResponseEntity.status(HttpStatus.OK).body(books);</span>
+<span class="fc" id="L25">        return ResponseEntity.status(HttpStatus.OK).body(books);</span>
 
     }
 }

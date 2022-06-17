@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.SpringReactBookstore.controllers.BookControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-06-17T16:16:52" hostname="AMBUS001203" time="1.338">
+<testsuite name="com.example.SpringReactBookstore.controllers.BookControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-06-17T17:19:05" hostname="AMBUS001203" time="1.47">
   <properties/>
-  <testcase name="shouldReturnBookDTOListWhenGetBooksIsCalled()" classname="com.example.SpringReactBookstore.controllers.BookControllerTest" time="1.338"/>
-  <system-out><![CDATA[[BookDTO(id=41afcae9-f7cf-474a-b08d-7470cacc7097, title=Harry Potter TEST, description=All your fantasies come true! TEST, releaseYear=2005)]
-]]></system-out>
+  <testcase name="shouldReturnBookDTOListWhenGetBooksIsCalled()" classname="com.example.SpringReactBookstore.controllers.BookControllerTest" time="1.47"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

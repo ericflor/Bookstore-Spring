@@ -27,11 +27,11 @@ class BookControllerTest {
     @Test
     void shouldReturnBookDTOListWhenGetBooksIsCalled(){
 
-        List<BookDTO> bookDTOS = new ArrayList<>();
+        List<BookDTO> bookDTOs = new ArrayList<>();
 
-        bookDTOS.add(getBookDTO());
+        bookDTOs.add(getBookDTO());
 
-        when(bookService.getBooks()).thenReturn(bookDTOS);
+        when(bookService.getBooks()).thenReturn(bookDTOs);
 
         ResponseEntity<List<BookDTO>> allBooks = bookController.getAllBooks();
 
