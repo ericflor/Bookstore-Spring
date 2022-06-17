@@ -13,18 +13,18 @@ public class BookService {
     private final BookDAO bookDAO;
     private final ModelMapper modelMapper;
 
-<span class="nc" id="L16">    public BookService(BookDAO bookDAO, ModelMapper modelMapper) {</span>
-<span class="nc" id="L17">        this.bookDAO = bookDAO;</span>
-<span class="nc" id="L18">        this.modelMapper = modelMapper;</span>
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L16">    public BookService(BookDAO bookDAO, ModelMapper modelMapper) {</span>
+<span class="fc" id="L17">        this.bookDAO = bookDAO;</span>
+<span class="fc" id="L18">        this.modelMapper = modelMapper;</span>
+<span class="fc" id="L19">    }</span>
 
     public List&lt;BookDTO&gt; getBooks(){
 
-<span class="nc" id="L23">        List&lt;Book&gt; allBooks = bookDAO.findAll();</span>
+<span class="fc" id="L23">        List&lt;Book&gt; allBooks = bookDAO.findAll();</span>
 
-<span class="nc" id="L25">        return allBooks.stream()</span>
-<span class="nc" id="L26">                .map(book -&gt; modelMapper.map(book, BookDTO.class))</span>
-<span class="nc" id="L27">                .collect(Collectors.toList());</span>
+<span class="fc" id="L25">        return allBooks.stream()</span>
+<span class="fc" id="L26">                .map(book -&gt; modelMapper.map(book, BookDTO.class))</span>
+<span class="fc" id="L27">                .collect(Collectors.toList());</span>
 
     }
 

@@ -6,7 +6,6 @@ import com.example.SpringReactBookstore.repositories.BookDAO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,13 +23,9 @@ public class BookService {
         List<Book> allBooks = bookDAO.findAll();
 
         return allBooks.stream()
-                .map(mapBookDTOtoBookEntity())
+                .map(book -> modelMapper.map(book, BookDTO.class))
                 .collect(Collectors.toList());
 
-    }
-
-    private Function<Book, BookDTO> mapBookDTOtoBookEntity() {
-        return book -> modelMapper.map(book, BookDTO.class);
     }
 
 }
