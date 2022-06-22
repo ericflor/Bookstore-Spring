@@ -27,7 +27,7 @@ public class BookRepositoryTest {
 
         Long totalBookCount = (long) all.size();
 
-        assertEquals(totalBookCount, 2);
+        assertEquals(totalBookCount, 19);
 
     }
 
@@ -36,6 +36,16 @@ public class BookRepositoryTest {
     void shouldReturnOneBookWhenTitleIsTestTitle(){
 
         List<Book> harry_potter_test = bookDAO.findBooksByTitle("Harry Potter TEST");
+
+        assertEquals(harry_potter_test.size(), 1);
+
+    }
+
+    @Test
+    @Sql(scripts = {"classpath:InsertInitialBookRecordForTest.sql"})
+    void shouldReturnOneBookWhenTitleIsTestTitle_IgnoreCase(){
+
+        List<Book> harry_potter_test = bookDAO.findBooksByTitleIgnoreCase("HARRY POTTER TEST");
 
         assertEquals(harry_potter_test.size(), 1);
 

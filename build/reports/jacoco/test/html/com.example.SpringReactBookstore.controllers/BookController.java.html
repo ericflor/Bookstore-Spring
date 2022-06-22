@@ -5,13 +5,13 @@ import com.example.SpringReactBookstore.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
 @RequestMapping(&quot;/books&quot;)
+@CrossOrigin
 <span class="fc" id="L15">public class BookController {</span>
 
     @Autowired
@@ -24,6 +24,14 @@ import java.util.List;
 
 <span class="fc" id="L25">        return ResponseEntity.status(HttpStatus.OK).body(books);</span>
 
+    }
+
+    @GetMapping(&quot;/{title}&quot;)
+    public ResponseEntity&lt;List&lt;BookDTO&gt;&gt; getBookByTitle(@PathVariable(&quot;title&quot;) String title) {
+
+<span class="fc" id="L32">        List&lt;BookDTO&gt; booksByTitle = bookService.getBooksByTitle(title);</span>
+
+<span class="fc" id="L34">        return ResponseEntity.status(HttpStatus.OK).body(booksByTitle);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

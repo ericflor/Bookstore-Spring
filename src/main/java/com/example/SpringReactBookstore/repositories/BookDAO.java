@@ -10,4 +10,6 @@ public interface BookDAO extends JpaRepository<Book, UUID> {
 
     List<Book> findBooksByTitle(String title);
 
+    List<Book> findBooksByTitleIgnoreCase(String title);
+
 }

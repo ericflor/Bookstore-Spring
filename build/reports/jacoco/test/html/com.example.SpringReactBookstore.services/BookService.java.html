@@ -4,29 +4,39 @@ import com.example.SpringReactBookstore.models.Book;
 import com.example.SpringReactBookstore.models.BookDTO;
 import com.example.SpringReactBookstore.repositories.BookDAO;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class BookService {
+    @Autowired
     private final BookDAO bookDAO;
     private final ModelMapper modelMapper;
 
-<span class="fc" id="L16">    public BookService(BookDAO bookDAO, ModelMapper modelMapper) {</span>
-<span class="fc" id="L17">        this.bookDAO = bookDAO;</span>
-<span class="fc" id="L18">        this.modelMapper = modelMapper;</span>
-<span class="fc" id="L19">    }</span>
+<span class="fc" id="L18">    public BookService(BookDAO bookDAO, ModelMapper modelMapper) {</span>
+<span class="fc" id="L19">        this.bookDAO = bookDAO;</span>
+<span class="fc" id="L20">        this.modelMapper = modelMapper;</span>
+<span class="fc" id="L21">    }</span>
 
     public List&lt;BookDTO&gt; getBooks(){
 
-<span class="fc" id="L23">        List&lt;Book&gt; allBooks = bookDAO.findAll();</span>
+<span class="fc" id="L25">        List&lt;Book&gt; allBooks = bookDAO.findAll();</span>
 
-<span class="fc" id="L25">        return allBooks.stream()</span>
-<span class="fc" id="L26">                .map(book -&gt; modelMapper.map(book, BookDTO.class))</span>
-<span class="fc" id="L27">                .collect(Collectors.toList());</span>
+<span class="fc" id="L27">        return allBooks.stream()</span>
+<span class="fc" id="L28">                .map(book -&gt; modelMapper.map(book, BookDTO.class))</span>
+<span class="fc" id="L29">                .collect(Collectors.toList());</span>
 
     }
 
+    public List&lt;BookDTO&gt; getBooksByTitle(String bookTitle) {
+
+<span class="fc" id="L35">        List&lt;Book&gt; booksByTitle = bookDAO.findBooksByTitleIgnoreCase(bookTitle);</span>
+
+<span class="fc" id="L37">        return booksByTitle.stream()</span>
+<span class="fc" id="L38">                .map(book -&gt; modelMapper.map(book, BookDTO.class))</span>
+<span class="fc" id="L39">                .collect(Collectors.toList());</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

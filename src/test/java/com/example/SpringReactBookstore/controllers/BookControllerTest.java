@@ -9,12 +9,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -41,6 +41,22 @@ class BookControllerTest {
         assertThat(allBooks).isNotNull();
 
         assertThat(Objects.requireNonNull(allBooks.getBody()).size()).isEqualTo(1);
+    }
+
+    @Test
+    void shouldReturnBookDTOListWhenGetBooksByTitleIsCalled(){
+
+        List<BookDTO> bookDTOs = new ArrayList<>();
+
+        bookDTOs.add(getBookDTO());
+
+        when(bookService.getBooksByTitle(anyString())).thenReturn(bookDTOs);
+
+        ResponseEntity<List<BookDTO>> bookByTitle = bookController.getBookByTitle("HARRY POTTER TEST");
+
+        assertThat(bookByTitle).isNotNull();
+
+        assertThat(Objects.requireNonNull(bookByTitle.getBody()).size()).isEqualTo(1);
     }
 
     private BookDTO getBookDTO(){
