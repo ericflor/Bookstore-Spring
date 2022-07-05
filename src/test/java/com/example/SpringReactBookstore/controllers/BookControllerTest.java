@@ -27,14 +27,7 @@ import static org.mockito.Mockito.when;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @ExtendWith(MockitoExtension.class)
-@SpringBootTest(classes = SpringReactBookstoreApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BookControllerTest {
-
-    @LocalServerPort
-    private int port;
-
-    @Autowired
-    private TestRestTemplate restTemplate;
 
     @InjectMocks
     private BookController bookController;
@@ -42,38 +35,6 @@ class BookControllerTest {
     @Mock
     private BookService bookService;
 
-    @Autowired
-    private JwtUtil jwtUtil;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    void setUpHeader(){
-
-        String token = jwtUtil.generateToken(new User("TheBob123@gmail.com", "1pass3word3", new ArrayList<>()));
-
-        restTemplate.getRestTemplate().setInterceptors(Collections.singletonList((request, body, execution) ->
-        {
-            request.getHeaders().add("Authorization", "Beer " + token);
-
-            return execution.execute(request, body);
-        }
-        ));
-    }
-
-    @Test
-    @Sql(scripts = { "classpath:InsertInitialBookRecordForTest.sql" })
-    void shouldReturnBooksWhenBookAPICalled(){
-
-        setUpHeader();
-
-        BookDTO[] listOfBooks = restTemplate.getForObject("http://localhost:" + port + "/books", BookDTO[].class);
-
-        assertThat(listOfBooks).isNotNull();
-
-        assertThat(listOfBooks.length).isEqualTo(19);
-
-    }
 
     @Test
     void shouldReturnBookDTOListWhenGetBooksIsCalled(){

@@ -13,43 +13,43 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-<span class="fc" id="L16">public class JwtUtil {</span>
+<span class="nc" id="L16">public class JwtUtil {</span>
 
-<span class="fc" id="L18">    String SECRET_KEY = &quot;shhhhhhh&quot;;</span>
+<span class="nc" id="L18">    String SECRET_KEY = &quot;shhhhhhh&quot;;</span>
 
     public String generateToken(UserDetails userDetails){
 
-<span class="fc" id="L22">        Map&lt;String, Object&gt; claims = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L22">        Map&lt;String, Object&gt; claims = new HashMap&lt;&gt;();</span>
 
-<span class="fc" id="L24">        return createToken(claims, userDetails.getUsername());</span>
+<span class="nc" id="L24">        return createToken(claims, userDetails.getUsername());</span>
     }
 
     private String createToken(Map&lt;String, Object&gt; claims, String username) {
 
-<span class="fc" id="L29">        return Jwts.builder()</span>
-<span class="fc" id="L30">                .setClaims(claims)</span>
-<span class="fc" id="L31">                .setSubject(username)</span>
-<span class="fc" id="L32">                .setIssuedAt(new Date(System.currentTimeMillis()))</span>
-<span class="fc" id="L33">                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7))</span>
-<span class="fc" id="L34">                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();</span>
+<span class="nc" id="L29">        return Jwts.builder()</span>
+<span class="nc" id="L30">                .setClaims(claims)</span>
+<span class="nc" id="L31">                .setSubject(username)</span>
+<span class="nc" id="L32">                .setIssuedAt(new Date(System.currentTimeMillis()))</span>
+<span class="nc" id="L33">                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24 * 7))</span>
+<span class="nc" id="L34">                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();</span>
     }
 
     public Authentication validateToken(String token) {
 
-<span class="fc" id="L39">        Claims claims = extractClaims(token);</span>
+<span class="nc" id="L39">        Claims claims = extractClaims(token);</span>
 
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if(claims.getExpiration().before(new Date())){</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if(claims.getExpiration().before(new Date())){</span>
 <span class="nc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L45">        String username = claims.getSubject();</span>
+<span class="nc" id="L45">        String username = claims.getSubject();</span>
 
-<span class="fc" id="L47">        return new UsernamePasswordAuthenticationToken(username, null, new ArrayList&lt;&gt;());</span>
+<span class="nc" id="L47">        return new UsernamePasswordAuthenticationToken(username, null, new ArrayList&lt;&gt;());</span>
     }
 
     private Claims extractClaims(String token) {
 
-<span class="fc" id="L52">        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();</span>
+<span class="nc" id="L52">        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
