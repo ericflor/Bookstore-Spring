@@ -32,11 +32,11 @@ public class BookService {
 
     public List&lt;BookDTO&gt; getBooksByTitle(String bookTitle) {
 
-<span class="fc" id="L35">        List&lt;Book&gt; booksByTitle = bookDAO.findBooksByTitleIgnoreCase(bookTitle);</span>
+<span class="nc" id="L35">        List&lt;Book&gt; booksByTitle = bookDAO.findBooksByTitleIgnoreCase(bookTitle);</span>
 
-<span class="fc" id="L37">        return booksByTitle.stream()</span>
-<span class="fc" id="L38">                .map(book -&gt; modelMapper.map(book, BookDTO.class))</span>
-<span class="fc" id="L39">                .collect(Collectors.toList());</span>
+<span class="nc" id="L37">        return booksByTitle.stream()</span>
+<span class="nc" id="L38">                .map(book -&gt; modelMapper.map(book, BookDTO.class))</span>
+<span class="nc" id="L39">                .collect(Collectors.toList());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

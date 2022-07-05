@@ -32,13 +32,13 @@ public class UserController {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         }
         catch (BadCredentialsException exception){
-            throw new RuntimeException("Email/Username or Password is incorrect");
+            throw new RuntimeException("Email or Password is incorrect");
         }
 
         UserDetails userDetails = userDetailService.loadUserByUsername(request.getEmail());
 
         String token = jwtUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthenticationResponse("Bearer " + token));
+        return ResponseEntity.ok(new AuthenticationResponse("Beer " + token));
     }
 }

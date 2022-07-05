@@ -22,13 +22,13 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         String tokenWithBearer = request.getHeader("Authorization");
 
-        if(tokenWithBearer == null || !tokenWithBearer.startsWith("Bearer")){
+        if(tokenWithBearer == null || !tokenWithBearer.startsWith("Beer")){
 
             filterChain.doFilter(request, response);
             return;
         }
 
-        String token = tokenWithBearer.substring(7); // remove "Bearer " from beginning of token string
+        String token = tokenWithBearer.substring(5); // remove "Bearer " from beginning of token string
 
         Authentication authentication = jwtUtil.validateToken(token);
 
