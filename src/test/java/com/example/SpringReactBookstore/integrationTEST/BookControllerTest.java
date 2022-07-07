@@ -12,10 +12,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.jdbc.Sql;
-
 import java.util.ArrayList;
 import java.util.Collections;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -49,7 +47,7 @@ public class BookControllerTest {
     }
 
     @Test
-    @Sql(scripts = { "classpath:InsertInitialBookRecordForTest.sql" })
+    @Sql(scripts = {"classpath:InsertInitialBookRecordForTest.sql"})
     void shouldReturnBooksWhenBookAPICalled(){
 
         setUpHeader();

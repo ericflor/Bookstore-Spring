@@ -28,7 +28,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             return;
         }
 
-        String token = tokenWithBearer.substring(5); // remove "Bearer " from beginning of token string
+        String token = tokenWithBearer.substring(5); // remove "Beer " from beginning of token string
 
         Authentication authentication = jwtUtil.validateToken(token);
 

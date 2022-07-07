@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.SpringReactBookstore.controllers.BookControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-07-05T14:51:08" hostname="AMBUS001203" time="1.533">
-  <properties/>
-  <testcase name="shouldReturnBookDTOListWhenGetBooksByTitleIsCalled()" classname="com.example.SpringReactBookstore.controllers.BookControllerTest" time="1.522"/>
-  <testcase name="shouldReturnBookDTOListWhenGetBooksIsCalled()" classname="com.example.SpringReactBookstore.controllers.BookControllerTest" time="0.007"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

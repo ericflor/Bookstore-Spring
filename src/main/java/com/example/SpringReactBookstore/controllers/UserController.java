@@ -5,6 +5,7 @@ import com.example.SpringReactBookstore.models.AuthenticationRequest;
 import com.example.SpringReactBookstore.models.AuthenticationResponse;
 import com.example.SpringReactBookstore.services.UserDetailService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -20,9 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class UserController {
 
+    @Autowired
     private final AuthenticationManager authenticationManager;
+
+    @Autowired
     private final UserDetailService userDetailService;
 
+    @Autowired
     private final JwtUtil jwtUtil;
 
     @PostMapping

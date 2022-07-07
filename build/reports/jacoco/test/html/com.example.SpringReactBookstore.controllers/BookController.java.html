@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping(&quot;/books&quot;)
 @CrossOrigin
-<span class="fc" id="L15">public class BookController {</span>
+<span class="nc" id="L15">public class BookController {</span>
 
     @Autowired
     private BookService bookService;
@@ -20,18 +20,18 @@ import java.util.List;
     @GetMapping
     public ResponseEntity&lt;List&lt;BookDTO&gt;&gt; getAllBooks(){
 
-<span class="fc" id="L23">        List&lt;BookDTO&gt; books = bookService.getBooks();</span>
+<span class="nc" id="L23">        List&lt;BookDTO&gt; books = bookService.getBooks();</span>
 
-<span class="fc" id="L25">        return ResponseEntity.status(HttpStatus.OK).body(books);</span>
+<span class="nc" id="L25">        return ResponseEntity.status(HttpStatus.OK).body(books);</span>
 
     }
 
     @GetMapping(&quot;/{title}&quot;)
     public ResponseEntity&lt;List&lt;BookDTO&gt;&gt; getBookByTitle(@PathVariable(&quot;title&quot;) String title) {
 
-<span class="fc" id="L32">        List&lt;BookDTO&gt; booksByTitle = bookService.getBooksByTitle(title);</span>
+<span class="nc" id="L32">        List&lt;BookDTO&gt; booksByTitle = bookService.getBooksByTitle(title);</span>
 
-<span class="fc" id="L34">        return ResponseEntity.status(HttpStatus.OK).body(booksByTitle);</span>
+<span class="nc" id="L34">        return ResponseEntity.status(HttpStatus.OK).body(booksByTitle);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,7 +1,4 @@
 package com.example.SpringReactBookstore.controllers;
-
-import com.example.SpringReactBookstore.SpringReactBookstoreApplication;
-import com.example.SpringReactBookstore.config.JwtUtil;
 import com.example.SpringReactBookstore.models.BookDTO;
 import com.example.SpringReactBookstore.services.BookService;
 import org.junit.jupiter.api.Test;
@@ -9,18 +6,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.jdbc.Sql;
-
 import java.util.*;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
