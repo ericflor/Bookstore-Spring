@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.SpringReactBookstore.services.UserServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-07-08T15:41:25" hostname="AMBUS001203" time="2.336">
+  <properties/>
+  <testcase name="shouldReturnUserWhenEmailIsSent()" classname="com.example.SpringReactBookstore.services.UserServiceTest" time="2.297"/>
+  <testcase name="shouldThrowErrorWhenEmailDoesNotExist()" classname="com.example.SpringReactBookstore.services.UserServiceTest" time="0.027"/>
+  <testcase name="shouldReturnUserIdWhenCalledWithUserData()" classname="com.example.SpringReactBookstore.services.UserServiceTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

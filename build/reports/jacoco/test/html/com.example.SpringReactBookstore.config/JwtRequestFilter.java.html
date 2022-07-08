@@ -28,7 +28,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 <span class="nc" id="L28">            return;</span>
         }
 
-<span class="nc" id="L31">        String token = tokenWithBearer.substring(5); // remove &quot;Bearer &quot; from beginning of token string</span>
+<span class="nc" id="L31">        String token = tokenWithBearer.substring(5); // remove &quot;Beer &quot; from beginning of token string</span>
 
 <span class="nc" id="L33">        Authentication authentication = jwtUtil.validateToken(token);</span>
 

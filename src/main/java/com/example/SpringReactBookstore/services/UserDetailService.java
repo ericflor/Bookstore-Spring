@@ -1,10 +1,10 @@
 package com.example.SpringReactBookstore.services;
 
+import com.example.SpringReactBookstore.models.UserDTO;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,15 +12,18 @@ import java.util.ArrayList;
 @Service
 public class UserDetailService implements UserDetailsService {
 
-    private final PasswordEncoder passwordEncoder;
+    private final UserService userService;
 
-    public UserDetailService(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
+    public UserDetailService(UserService userService) {
+        this.userService = userService;
     }
 
-    // this is function used by spring security for loading user from DB
+    // this is a function used by spring security for loading user from DB
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new User("TheBob123@gmail.com", passwordEncoder.encode("1pass3word3"), new ArrayList<>());
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+
+        UserDTO userByEmail = userService.getUserByEmail(email);
+
+        return new User(userByEmail.getEmail(), userByEmail.getPassword(), new ArrayList<>());
     }
 }

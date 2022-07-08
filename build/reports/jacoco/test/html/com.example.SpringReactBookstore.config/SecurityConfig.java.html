@@ -12,6 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -21,50 +25,57 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtRequestFilter jwtRequestFilter;
 
-<span class="nc" id="L24">    public SecurityConfig(UserDetailService userDetailService, PasswordEncoder passwordEncoder, JwtRequestFilter jwtRequestFilter) {</span>
-<span class="nc" id="L25">        this.userDetailService = userDetailService;</span>
-<span class="nc" id="L26">        this.passwordEncoder = passwordEncoder;</span>
-<span class="nc" id="L27">        this.jwtRequestFilter = jwtRequestFilter;</span>
-<span class="nc" id="L28">    }</span>
+<span class="nc" id="L28">    public SecurityConfig(UserDetailService userDetailService, PasswordEncoder passwordEncoder, JwtRequestFilter jwtRequestFilter) {</span>
+<span class="nc" id="L29">        this.userDetailService = userDetailService;</span>
+<span class="nc" id="L30">        this.passwordEncoder = passwordEncoder;</span>
+<span class="nc" id="L31">        this.jwtRequestFilter = jwtRequestFilter;</span>
+<span class="nc" id="L32">    }</span>
 
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
 
-<span class="nc" id="L34">        auth.authenticationProvider(daoAuthenticationProvider());</span>
-<span class="nc" id="L35">    }</span>
+<span class="nc" id="L38">        auth.authenticationProvider(daoAuthenticationProvider());</span>
+<span class="nc" id="L39">    }</span>
 
     private AuthenticationProvider daoAuthenticationProvider() {
 
-<span class="nc" id="L39">        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();</span>
+<span class="nc" id="L43">        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();</span>
 
-<span class="nc" id="L41">        provider.setUserDetailsService(userDetailService);</span>
+<span class="nc" id="L45">        provider.setUserDetailsService(userDetailService);</span>
 
-<span class="nc" id="L43">        provider.setPasswordEncoder(passwordEncoder);</span>
+<span class="nc" id="L47">        provider.setPasswordEncoder(passwordEncoder);</span>
 
-<span class="nc" id="L45">        return provider;</span>
+<span class="nc" id="L49">        return provider;</span>
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-<span class="nc" id="L51">        http.csrf()</span>
-<span class="nc" id="L52">                .disable()</span>
-<span class="nc" id="L53">                .sessionManagement()</span>
-<span class="nc" id="L54">                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)</span>
-<span class="nc" id="L55">                .and()</span>
-<span class="nc" id="L56">                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)</span>
-<span class="nc" id="L57">                .authorizeRequests()</span>
-<span class="nc" id="L58">                .antMatchers(&quot;/login&quot;)</span>
-<span class="nc" id="L59">                .permitAll()</span>
-<span class="nc" id="L60">                .anyRequest()</span>
-<span class="nc" id="L61">                .authenticated();</span>
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L55">        http.csrf()</span>
+<span class="nc" id="L56">                .disable()</span>
+<span class="nc" id="L57">                .cors().configurationSource(request -&gt; {</span>
+<span class="nc" id="L58">                    CorsConfiguration corsConfiguration = new CorsConfiguration();</span>
+<span class="nc" id="L59">                    corsConfiguration.setAllowedOrigins(Collections.singletonList(&quot;*&quot;));</span>
+<span class="nc" id="L60">                    corsConfiguration.setAllowedMethods(Arrays.asList(&quot;GET&quot;, &quot;POST&quot;, &quot;PUT&quot;, &quot;DELETE&quot;, &quot;OPTIONS&quot;));</span>
+<span class="nc" id="L61">                    corsConfiguration.setAllowedHeaders(Collections.singletonList(&quot;*&quot;));</span>
+<span class="nc" id="L62">                    return corsConfiguration;})</span>
+<span class="nc" id="L63">                .and()</span>
+<span class="nc" id="L64">                .sessionManagement()</span>
+<span class="nc" id="L65">                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)</span>
+<span class="nc" id="L66">                .and()</span>
+<span class="nc" id="L67">                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)</span>
+<span class="nc" id="L68">                .authorizeRequests()</span>
+<span class="nc" id="L69">                .antMatchers(&quot;/login&quot;)</span>
+<span class="nc" id="L70">                .permitAll()</span>
+<span class="nc" id="L71">                .anyRequest()</span>
+<span class="nc" id="L72">                .authenticated();</span>
+<span class="nc" id="L73">    }</span>
 
     @Bean
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
-<span class="nc" id="L67">        return super.authenticationManager();</span>
+<span class="nc" id="L78">        return super.authenticationManager();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
